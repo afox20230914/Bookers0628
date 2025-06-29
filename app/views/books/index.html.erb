@@ -9,6 +9,10 @@
 
   <h2>Books</h2>
 
+  <% if flash[:notice] %>
+  <p style="color: green;"><%= flash[:notice] %></p>
+<% end %>
+
   <table>
   <thead>
     <tr>
