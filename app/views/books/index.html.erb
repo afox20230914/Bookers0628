@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Bookers top</title>
+  </head>
+
+  <body>
+
+  <h2>Books</h2>
+
+  <table>
+  <thead>
+    <tr>
+    <th><div class="title-list-head">Title</div></th>
+    <th><div class="body-list-head">Body</div></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @books.each do |book| %>
+      <tr>
+        <td><div class="title-list"><%= book.title %></th></td>
+        <td><div class="body-list"><%= book.body %></th></td>
+        <td><div class="actions"><%= link_to "Show", book_path(book) %></th></td>
+        <td><div class="actions"><%= link_to "Edit", edit_book_path(book) %></th></td>
+        <td><div class="actions"><%= link_to "Destroy", book_path(book), method: :delete, data: { confirm: "Are you sure?" } %></td>
+        </th></tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+  <h2>New book</h2>
+  <% if @book.errors.any? %>
+  <%= @book.errors.count %>errors prohibited this book from being saved:
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  <% end %>
+  </ul>
+
+  <!-- form_with部分 -->
+  <%= form_with model: @book, local: true do |f| %>
+    <p>Title</p>
+    <%= f.text_field :title %>
+    
+    <p>Body</p>
+    <%= f.text_area :body %>
+    <br>
+    <%= f.submit "Create Book" %>
+  <% end %>
+</body>
+</html>
